@@ -1,10 +1,10 @@
-const gamesList = (state = [], action) => {
+const archive = (state = [], action) => {
     switch (action.type) {
-        case 'SET_GAMES':
+        case 'SET_ARCHIVE':
             return action.payload
         default:
             return state;
     }
 }
 
-export default gamesList;
+export default archive;

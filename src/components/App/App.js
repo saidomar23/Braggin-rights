@@ -18,6 +18,7 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 
 import './App.css';
+import GameSearch from '../GameSearch/GameSearch';
 
 class App extends Component {
   componentDidMount () {
@@ -50,6 +51,11 @@ class App extends Component {
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
+            <ProtectedRoute
+            exact
+            path="/gamesearch"
+            component={GameSearch}
+            />
             <ProtectedRoute
               exact
               path="/info"

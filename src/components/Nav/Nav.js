@@ -9,6 +9,9 @@ const Nav = (props) => (
     <Link to="/home">
       <h2 className="nav-title">Bragging Rights</h2>
     </Link>
+    <Link to="/gamesearch">
+    <p>Game Search</p>
+    </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/home">
         {/* Show this link if they are logged in or not,
@@ -25,6 +28,7 @@ const Nav = (props) => (
           <LogOutButton className="nav-link"/>
         </>
       )}
+
       {/* Always show this link since the about page is not protected */}
       <Link className="nav-link" to="/about">
         About
