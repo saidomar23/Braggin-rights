@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 
 import './App.css';
 import GameSearch from '../GameSearch/GameSearch';
+import GamePage from '../GamePage/GamePage'
 
 class App extends Component {
   componentDidMount () {
@@ -55,6 +56,11 @@ class App extends Component {
             exact
             path="/gamesearch"
             component={GameSearch}
+            />
+            <ProtectedRoute
+            exact
+            path="/gamepage"
+            component={GamePage}
             />
             <ProtectedRoute
               exact

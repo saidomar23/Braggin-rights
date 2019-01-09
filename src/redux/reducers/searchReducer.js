@@ -1,10 +1,10 @@
-const gamePage = (state = [], action) => {
+const searchList = (state = [], action) => {
     switch (action.type) {
-        case 'SET_GAME':
+        case 'SET_GAMES':
             return action.payload
         default:
             return state;
     }
 }
 
-export default gamePage;
+export default searchList;

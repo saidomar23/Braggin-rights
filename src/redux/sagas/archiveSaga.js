@@ -3,8 +3,8 @@ import axios from 'axios';
 
 function* getGames(){
     try{
-        getGamesResponse = yield call(axios.get , '/api/games')
-        yield dispatch({type: 'SET_ARCHIVE' , payload:getGamesResponse })
+       const getGamesResponse = yield call(axios.get , '/api/games')
+        yield dispatch({type: 'SET_ARCHIVE' , payload:getGamesResponse.data.results })
     }catch(error){
         console.log('error in get games api' , error);
         
@@ -13,5 +13,7 @@ function* getGames(){
 }
 
 function* getGamesSaga(){
-
+yield takeEvery('GET_GAMES' , getGames)
 }
+
+export default getGamesSaga;
