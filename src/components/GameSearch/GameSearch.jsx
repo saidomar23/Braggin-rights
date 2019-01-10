@@ -9,6 +9,7 @@ class GameSearch extends Component {
     }
 
     handleChange = (event) => {
+        event.preventDefault();
         this.setState({
             search: event.target.value
         })
@@ -16,13 +17,12 @@ class GameSearch extends Component {
 
     handleClick = () => {
         this.props.dispatch({ type: 'FETCH_GAMES', payload: this.state.search })
-        console.log(this.props.reduxStore.gameList);
     }
     handleGameClick = (guid) =>{
+
         this.props.dispatch({type: 'GRAB_GAME' , payload:guid})
         console.log(guid);
-        
-        // this.props.history.push('/gamepage')
+        this.props.history.push('/gamepage')
     }
     render() {
         let gameList = this.props.reduxStore.searchlist.map(game =>{
@@ -30,14 +30,17 @@ class GameSearch extends Component {
                 <p>{game.name}</p>
                 <p>{game.deck}</p>
                 <img src={game.image.medium_url} alt="nothing to see here" />
-                <button>hello</button>
                 </div>
               
         })
         return (
             <div>
-                <input onChange={this.handleChange} type="text" placeholder="search game" />
-                <button onClick={this.handleClick}>Submit</button>
+                <form >
+                    <input onChange={this.handleChange} type="text"/>
+                    <input onClick={this.handleClick} type="submit"/>
+                </form>
+                {/* <input onChange={this.handleChange} type="text" placeholder="search game" />
+                <button onClick={this.handleClick}>Submit</button> */}
                 {gameList}
             </div>
         )

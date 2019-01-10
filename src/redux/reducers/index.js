@@ -5,7 +5,7 @@ import user from './userReducer';
 import searchlist from './searchReducer'
 import archive from './archiveReducer'
 import gamePage from './gameReducer'
-
+import genre from './genreReducer'
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -18,7 +18,8 @@ const rootReducer = combineReducers({
   user,
   searchlist,
   archive,
-  gamePage, // will have an id and username if someone is logged in
+  gamePage,
+  genre, // will have an id and username if someone is logged in
 });
 
 export default rootReducer;

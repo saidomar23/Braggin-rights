@@ -1,4 +1,4 @@
-const gamePage = (state = [], action) => {
+const gamePage = (state = {}, action) => {
     switch (action.type) {
         case 'SET_GAME':
             return action.payload
