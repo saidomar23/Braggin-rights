@@ -5,6 +5,7 @@ import userSaga from './userSaga';
 import searchSaga from './searchSaga';
 import archive from './archiveSaga'
 import gameSaga from './gameSaga'
+import userSearch from './userSearchSaga'
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -19,6 +20,7 @@ export default function* rootSaga() {
     userSaga(),
     searchSaga(),
     archive(),
-    gameSaga()
+    gameSaga(),
+    userSearch()
   ]);
 }

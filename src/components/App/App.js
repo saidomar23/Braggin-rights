@@ -21,7 +21,8 @@ import './App.css';
 import GameSearch from '../GameSearch/GameSearch';
 import GamePage from '../GamePage/GamePage'
 import GameArchive from '../GameArchive/GameArchive';
-
+import UserSearch from '../UserSearch/UserSearch'
+import RoundPage from '../RoundPage/RoundPage'
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
@@ -67,6 +68,16 @@ class App extends Component {
               exact
               path="/gamearchive"
               component={GameArchive}
+            />
+            <ProtectedRoute 
+            exact
+            path="/usersearch"
+            component={UserSearch}
+            />
+            <ProtectedRoute
+            exact 
+            path="/roundpage"
+            component={RoundPage}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

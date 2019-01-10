@@ -1,13 +1,11 @@
-
-let genreName;
-
-const gameGenre = (state = '', action) =>{
+const gameGenre = (state = [], action) =>{
     if(action.type === 'SET_GAME'){
+    let genres = [];
        action.payload.genres.map(genre =>{
-        genreName = genre.name
-           return genreName
+                genres.push(genre.name)
+                return genres
        })
-       return genreName
+       return genres;
     }
     else{
         return state;
