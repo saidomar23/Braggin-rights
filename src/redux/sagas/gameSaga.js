@@ -9,8 +9,17 @@ function* grabGame(action) {
 
     }
 }
-
+function* addGame(action){
+    try{
+        yield call(axios.post , `/api/game` , action.payload)
+        yield dispatch({type: 'SET_FAVORITE' })
+    }catch(error){
+        console.log('error in addgame saga' , error);
+        
+    }
+}
 function* gameSaga() {
     yield takeEvery('GRAB_GAME', grabGame );
+    yield takeEvery('ADD_GAME' , addGame)
   }
   export default gameSaga;

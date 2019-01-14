@@ -11,12 +11,17 @@ class GameArchive extends Component {
         console.log(guid);
         this.props.history.push('/gamepage')
     }
+    handleClick = (guid) =>{
+        this.props.dispatch({type: 'ADD_GAME', payload:{ user_id:this.props.reduxStore.user.id , game_id: guid}})
+    }
     render(){
         const gameList = this.props.reduxStore.archive.map(game =>{
-            return <div onClick={() =>this.handleGameClick(game.guid)} key={game.id}>
+            return <div key={game.id}><div onClick={() =>this.handleGameClick(game.guid)}>
                 <h3>{game.name}</h3>
                 <p>{game.deck}</p>
                 <img src={game.image.medium_url} alt="nothing to see here"/>
+            </div>
+            <button onClick={() =>this.handleClick(game.guid)}>ADD</button>
             </div>
         })
         return(

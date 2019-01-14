@@ -6,7 +6,7 @@ import searchSaga from './searchSaga';
 import archive from './archiveSaga'
 import gameSaga from './gameSaga'
 import userSearch from './userSearchSaga'
-import friendSaga from './addFriendSaga'
+import friendSaga from './friendSaga'
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga

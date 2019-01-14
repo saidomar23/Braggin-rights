@@ -16,5 +16,16 @@ router.get('/:id', (req, res) => {
     })
 })
 
+router.post('/', (req,res)=>{
+    queryString = `INSERT INTO "favorite_list" ("user_id" , "game_id") VALUES ($1, $2);`
+    pool.query(queryString , [req.body.user_id , req.body.game_id]).then( (result) => {
+        res.sendStatus(200);
+    })
+    .catch( (error) => {
+        console.log(`Error on query ${error}`);
+        res.sendStatus(500);
+    }) 
+})
+
 
 module.exports = router;
