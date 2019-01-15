@@ -45,13 +45,11 @@ class GamePage extends Component {
     }
 
 
-
     render() {
         let game = this.props.reduxStore.gamePage
         let genres = this.props.reduxStore.genre
 
         let challenge = this.challengeButton(genres)
-        console.log(challenge)
         return (
             <div key={game.id}>
                 <h1>{game.name}</h1>
