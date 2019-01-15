@@ -15,6 +15,7 @@ const gameArchiveRouter = require('./routes/archive.router')
 const gamePageRouter = require('./routes/game.router')
 const userSearchRotuer = require('./routes/usersearch.router')
 const friendRouter = require('./routes/friend.router')
+const favoriteRouter = require('./routes/favorite.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -34,6 +35,7 @@ app.use('/api/games', gameArchiveRouter)
 app.use('/api/game', gamePageRouter)
 app.use('/api/usersearch' , userSearchRotuer)
 app.use('/api/friend' , friendRouter)
+app.use('/api/favorite' , favoriteRouter)
 
 // Serve static files
 app.use(express.static('build'));

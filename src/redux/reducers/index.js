@@ -8,6 +8,8 @@ import gamePage from './gameReducer'
 import genre from './genreReducer'
 import userSearch from './userSearchReducer'
 import friends from './friendReducer'
+import favorite from './favoriteReducer'
+import favoriteList from './favoriteListReducer'
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -23,7 +25,9 @@ const rootReducer = combineReducers({
   gamePage,
   genre,
   userSearch,
-  friends, // will have an id and username if someone is logged in
+  friends,
+  favorite,
+  favoriteList, // will have an id and username if someone is logged in
 });
 
 export default rootReducer;

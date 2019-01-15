@@ -9,10 +9,16 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 class UserPage extends Component {
   componentDidMount(){
     this.props.dispatch({type: 'GET_FRIENDS' , payload: this.props.reduxStore.user.id})
+    this.props.dispatch({type: 'GET_FAVORITE' , payload: this.props.reduxStore.user.id})
+    
   }
 
 
-  render(){return(
+  render(){
+    console.log(this.props.reduxStore.favorite);
+    
+    this.props.dispatch({type: 'DISPLAY_FAVORITE' , payload:this.props.reduxStore.favorite})
+    return(
   <div>
     <h1 id="welcome">
       Welcome, { this.props.reduxStore.user.username }!
