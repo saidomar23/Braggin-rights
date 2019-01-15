@@ -1,6 +1,5 @@
 import { put as dispatch, takeEvery , call} from 'redux-saga/effects';
 import axios from 'axios';
-import favorite from '../reducers/favoriteReducer';
 function* grabGame(action) {
     try {
         const apiResponse = yield call(axios.get, `/api/game/${action.payload}`)
@@ -23,6 +22,7 @@ function* getFavorite(action){
     try {
         const getResponse = yield call(axios.get, `/api/favorite/${action.payload}`)
         yield dispatch({ type: 'SET_FAVORITE', payload: getResponse.data })
+        yield dispatch(({type: 'DISPLAY_FAVORITE', payload: getResponse.data}))
     } catch (error) {
         console.log('error in getting favorite saga', error);
 
@@ -30,11 +30,15 @@ function* getFavorite(action){
 }
 function* displayFavorite(action){
     try{
+        console.log('not in loop');
+        
         let favorites = action.payload;
-       for(favorite of favorites){
-           const apiResponse = yield call(axios.get , `/api/favorite/${favorite.game_id}`)
-           yield dispatch({type: 'SET_FAVORITELIST' , payload: apiResponse})
+       for(let i=0; i< favorites.length; i++){
+           console.log('loop test:', favorites[i].game_id);
+           const apiResponse = yield call(axios.get , `/api/favoritelist/${favorites[i].game_id}`)
+           yield dispatch({type: 'SET_FAVORITELIST' , payload: apiResponse.data.results})
        }
+
     }catch(error){
         console.log('error in favorite api saga call' , error);
         

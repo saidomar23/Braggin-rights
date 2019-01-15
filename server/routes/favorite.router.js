@@ -17,16 +17,6 @@ router.get('/:id' , (req, res)=>{
         res.sendStatus(500);
     }) 
 })
-router.get('/:id', (req, res) => {
-    let id = req.params.id;
-    axios.get(` https://www.giantbomb.com/api/game/${id}/?api_key=${process.env.GIANTBOMB_API_KEY}&format=json`)
-    .then(response => {
-        console.log(response.data);
-        res.send(response.data);
-    }).catch(error => {
-        console.log('Error:', error);
-        res.sendStatus(500);
-    })
-})
+
 
 module.exports = router
