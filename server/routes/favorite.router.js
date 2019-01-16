@@ -25,13 +25,23 @@ for(let i=0; i< favorites.length; i++){
     } 
    setTimeout(() => {
    res.send(games)
-   }, 10000)
+   }, 7000)
     
 }).catch( (error) => {
-        console.log(`Error in friend query ${error}`);
+        console.log(`Error in favorite query ${error}`);
         res.sendStatus(500);
     }) 
 })
 
+router.delete('/:id' , (req , res)=>{
+    let id = req.params.id
+    const queryString = `DELETE FROM "favorite_list" WHERE "game_id" = $1` 
+    pool.query(queryString , [id]).then(results =>{
+        res.sendStatus(204)
+    }).catch( (error) => {
+        console.log(`Error in delete favorite query ${error}`);
+        res.sendStatus(500);
+    }) 
+})
 
 module.exports = router

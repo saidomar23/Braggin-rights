@@ -28,6 +28,19 @@ function* getFavorite(){
 
     }
 }
+function* deleteFavorite(action){
+    try{
+        yield call(axios.delete , `/api/favorite/${action.payload}`)
+        yield dispatch({type: 'GET_FAVORITE'})
+    }catch(error){
+        console.log('error in delete favorite saga' , error);
+        
+    }
+}
+
+
+
+
 // function* displayFavorite(action){
 //     try{
 //         console.log('not in loop');
@@ -50,6 +63,7 @@ function* gameSaga() {
     yield takeEvery('GRAB_GAME', grabGame );
     yield takeEvery('ADD_GAME' , addGame);
     yield takeEvery('GET_FAVORITE' , getFavorite)
+    yield takeEvery('DELETE_FAVORITE' , deleteFavorite)
     // yield takeEvery('DISPLAY_FAVORITE' , displayFavorite)
   }
   export default gameSaga;

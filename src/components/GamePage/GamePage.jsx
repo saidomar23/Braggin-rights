@@ -4,6 +4,7 @@ import {withRouter} from 'react-router-dom'
 class GamePage extends Component {
 
     handleClick = () => {
+        this.props.dispatch({type: "SEND_INSTANCE", payload:this.props.reduxStore.gamePage.guid  })
         this.props.history.push('/roundpage')
     }
 

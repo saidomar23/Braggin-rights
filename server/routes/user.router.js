@@ -40,4 +40,18 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+router.put('/bio' , (req , res)=>{
+  let id = req.user.id
+  let bio = req.body
+  let queryString = `UPDATE "person"
+  SET "bio" = $1
+  WHERE "id" = $2;`
+  pool.query(queryString , [bio.bio , id ]).then(results =>{
+    res.sendStatus(200)
+}).catch( (error) => {
+    console.log(`Error in update user query ${error}`);
+    res.sendStatus(500);
+}) 
+})
+
 module.exports = router;

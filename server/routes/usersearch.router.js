@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/:id', (req, res) => {
     let id = req.params.id;
     console.log(id)
-    const queryString = `SELECT "username", "id"  FROM "person" WHERE "username" ILIKE $1`
+    const queryString = `SELECT "username", "id" ,"bio"  FROM "person" WHERE "username" ILIKE $1`
     pool.query(queryString , [`%${id}%`]).then( (result) => {
         res.send(result.rows);
     })

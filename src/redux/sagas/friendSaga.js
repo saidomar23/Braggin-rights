@@ -7,7 +7,7 @@ try{
     const getFriendResponse = yield call(axios.get , `/api/friend/${action.payload}`)
      yield dispatch({type: 'SET_FRIEND' , payload: getFriendResponse.data})
  }catch(error){
-     console.log('error in get games api' , error);
+     console.log('error in get friends' , error);
      
  }
 }

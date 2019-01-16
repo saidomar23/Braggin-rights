@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { call, put as dispatch, takeLatest , takeEvery } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchUser() {
@@ -18,14 +18,22 @@ function* fetchUser() {
     // now that the session has given us a user object
     // with an id and username set the client-side user object to let
     // the client-side code know the user is logged in
-    yield put({ type: 'SET_USER', payload: response.data });
+    yield dispatch({ type: 'SET_USER', payload: response.data });
   } catch (error) {
     console.log('User get request failed', error);
   }
 }
 
+function* updateBio(action){
+  yield call(axios.put ,`/api/user/bio` , {bio : action.payload})
+  yield dispatch({type: 'FETCH_USER' })
+}
+
+
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeEvery('UPDATE_BIO' , updateBio)
 }
 
 export default userSaga;

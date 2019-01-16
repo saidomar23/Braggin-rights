@@ -31,6 +31,7 @@ class UserSearch extends Component {
                     {usernames.map(user =>{
                         return <div key={user.id}>
                              <h3>{user.username}</h3> 
+                             <p>{user.bio}</p>
                              <button onClick={() => this.addFriend(user.id)}>Add</button>
                              </div>
                     })}
