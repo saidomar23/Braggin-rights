@@ -26,6 +26,7 @@ import RoundPage from '../RoundPage/RoundPage'
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
+    
   }
 
   render() {
@@ -87,5 +88,10 @@ class App extends Component {
       </Router>
   )}
 }
+const mapStateToProps = (reduxStore) =>{
+  return{
+    reduxStore
+  }
+}
 
-export default connect()(App);
+export default connect(mapStateToProps)(App);

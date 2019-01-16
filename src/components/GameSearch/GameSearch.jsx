@@ -38,8 +38,10 @@ class GameSearch extends Component {
             search: event.target.value
         })
     }
-
-    handleClick = () => {
+    handleClick = (game) =>{
+        this.props.dispatch({type: 'ADD_GAME', payload:{ user_id:this.props.reduxStore.user.id , game_id: game.guid}})
+    }
+    handleSubmitClick = () => {
         this.props.dispatch({ type: 'FETCH_GAMES', payload: this.state.search })
     }
     handleGameClick = (guid) =>{
@@ -60,7 +62,7 @@ class GameSearch extends Component {
                          </CardContent>
                          </CardActionArea>
                     <CardActions>
-                     <IconButton onClick={() =>this.handleClick(game.guid)}><FavoriteIcon/></IconButton>
+                     <IconButton onClick={() =>this.handleClick(game)}><FavoriteIcon/></IconButton>
                      </CardActions>
                      </Card>
                      </div>
@@ -71,7 +73,7 @@ class GameSearch extends Component {
             <div>
                 <form >
                     <input onChange={this.handleChange} type="text"/>
-                    <input onClick={this.handleClick} type="submit"/>
+                    <input onClick={this.handleSubmitClick} type="submit"/>
                 </form>
                 {/* <input onChange={this.handleChange} type="text" placeholder="search game" />
                 <button onClick={this.handleClick}>Submit</button> */}
