@@ -10,6 +10,8 @@ import userSearch from './userSearchReducer'
 import friends from './friendReducer'
 import favorite from './favoriteReducer'
 import favoriteList from './favoriteListReducer'
+import instance from './instanceReducer'
+import results from './resultsReducer'
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -27,7 +29,9 @@ const rootReducer = combineReducers({
   userSearch,
   friends,
   favorite,
-  favoriteList, // will have an id and username if someone is logged in
+  favoriteList,
+  instance,
+  results, // will have an id and username if someone is logged in
 });
 
 export default rootReducer;
