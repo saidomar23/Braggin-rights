@@ -86,9 +86,10 @@ class UserPage extends Component {
   render() {
     const { classes } = this.props;
     return (
+      <center>
       <div>
         <h1 id="welcome">
-          Welcome, {this.props.reduxStore.user.username}!
+        {this.props.reduxStore.user.username}!
         </h1>
         <p>
           Bio: {this.props.reduxStore.user.bio}
@@ -146,6 +147,7 @@ class UserPage extends Component {
           </div>
         })}
       </div>
+      </center>
     )
   }
 };

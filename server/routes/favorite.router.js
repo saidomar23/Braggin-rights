@@ -11,7 +11,6 @@ router.get('/' , (req, res)=>{
     WHERE "person".id = $1;`;
     pool.query(queryString , [id]).then( results => {
 //3rd party calls    
-console.log(results.rows);
 const games = []
 let favorites = results.rows
 for(let i=0; i< favorites.length; i++){

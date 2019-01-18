@@ -17,8 +17,9 @@ class UserSearch extends Component {
         this.props.dispatch({ type: 'SEARCH_USERS', payload: this.state.user })
     }
 
-    addFriend = (id) =>{
-    this.props.dispatch({type: 'ADD_FRIEND' , payload: {userID: this.props.reduxStore.user.id , friendID: id}} )
+    addFriend = (user) =>{
+    this.props.dispatch({type: 'ADD_FRIEND' , payload: {userID: this.props.reduxStore.user.id , friendID:user.id}} )
+    alert(`${user.username} has been added` )
     }
     render(){
         let usernames = this.props.reduxStore.userSearch
@@ -32,7 +33,7 @@ class UserSearch extends Component {
                         return <div key={user.id}>
                              <h3>{user.username}</h3> 
                              <p>{user.bio}</p>
-                             <button onClick={() => this.addFriend(user.id)}>Add</button>
+                             <button onClick={() => this.addFriend(user)}>Add</button>
                              </div>
                     })}
             </div>

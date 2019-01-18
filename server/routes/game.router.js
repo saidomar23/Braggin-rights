@@ -8,7 +8,6 @@ router.get('/:id', (req, res) => {
     let id = req.params.id;
     axios.get(` https://www.giantbomb.com/api/game/${id}/?api_key=${process.env.GIANTBOMB_API_KEY}&format=json`)
     .then(response => {
-        console.log(response.data);
         res.send(response.data);
     }).catch(error => {
         console.log('Error:', error);

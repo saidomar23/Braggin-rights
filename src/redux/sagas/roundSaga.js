@@ -13,8 +13,8 @@ function* postRound(action) {
 
 function* getResults(action){
     try{
-        const getResponse = yield call(axios.get , '/api/round' , action.payload)
-        yield dispatch({type: 'SET_RESULTS ' , payload: getResponse})
+        const getResponse = yield call(axios.get , `/api/round/${action.payload}`)
+        yield dispatch({type: 'SET_RESULTS' , payload: getResponse.data})
     }catch(error){
         console.log('error in get results ' , error);
         

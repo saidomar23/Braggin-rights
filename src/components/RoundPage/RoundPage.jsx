@@ -10,7 +10,12 @@ class RoundPage extends Component {
     }
 
     handleNext = () =>{
-        this.props.history.push('/resultspage')
+        this.props.dispatch({type: 'GET_RESULTS' , payload: this.props.reduxStore.instance.id})
+        
+        
+        setTimeout(() => {
+            this.props.history.push('/resultspage')
+            }, 5000)
     }
 
     handleChange = (event) =>{
@@ -33,7 +38,7 @@ class RoundPage extends Component {
                 <div>
                 <h1>Who's Playing</h1>
              {this.props.reduxStore.friends.map((friend, i)=>{
-                 return  <select onChange={this.handleChange}>
+                 return  <select key={i} onChange={this.handleChange}>
                  <option value="--">--</option> 
                  <option value={this.props.reduxStore.user.id}>{this.props.reduxStore.user.username}</option>
                  <option value={friend.user2_id} key={i}>{friend.user2}</option> 
