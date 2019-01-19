@@ -1,21 +1,25 @@
 import React, {Component} from 'react'
+import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { ResponsivePie } from '@nivo/pie'
+import Button from '@material-ui/core/Button'
 import './ResultsPage.css'
 
 class ResultsPage extends Component{
-    componentDidMount(){
-        
+    handleAddRound = () =>{
+        this.props.history.push('/roundpage')
     }
     render(){
         let players = [
             {
                 id: this.props.reduxStore.results[0].player_id,
-                wins:0
+                wins:0,
+                name: this.props.reduxStore.results[0].username
             },
           {
                 id: this.props.reduxStore.results[1].player_id,
-                wins: 0
+                wins: 0,
+                name: this.props.reduxStore.results[1].username
             }
         ]
 
@@ -39,21 +43,21 @@ class ResultsPage extends Component{
                   <ResponsivePie 
          data={[
              {
-                 "id": "Player 1",
+                 "id": `${players[0].name}`,
                  "label": "Player 1",
                  "value": players[0].wins
              },
              {
-                 "id": "Player 2",
+                 "id": `${players[1].name}`,
                  "label": "Player 2",
                  "value": players[1].wins
              }
          ]}
          margin={{
-             "top": 40,
-             "right": 80,
+             "top": 30,
+             "right": 50,
              "bottom": 80,
-             "left": 80
+             "left": 50
          }}
          colors={['blue','red']}
          colorBy="id"
@@ -74,9 +78,31 @@ class ResultsPage extends Component{
          animate={true}
          motionStiffness={90}
          motionDamping={15}
-       
-
+         width={400}
+         height={500}
+         legends={[
+            {
+                "anchor": "bottom",
+                "direction": "row",
+                "translateY": 56,
+                "itemWidth": 100,
+                "itemHeight": 18,
+                "itemTextColor": "#999",
+                "symbolSize": 18,
+                "symbolShape": "circle",
+                "effects": [
+                    {
+                        "on": "hover",
+                        "style": {
+                            "itemTextColor": "#000"
+                        }
+                    }
+                ]
+            }
+        ]}
                 />
+
+         <Button onClick={this.handleAddRound}>Add Another Round</Button>
             </div>
         )
     }
@@ -88,4 +114,4 @@ const mapStateToProps = (reduxStore) =>{
     }
 }
 
-export default connect(mapStateToProps)(ResultsPage)
+export default connect(mapStateToProps)(withRouter(ResultsPage))

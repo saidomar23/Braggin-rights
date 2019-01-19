@@ -54,11 +54,12 @@ class GamePage extends Component {
         return (
             <div key={game.id}>
                 <h1>{game.name}</h1>
+                {challenge}
                 <h3>{genres}</h3>
                 <p>{game.deck}</p>
                 {game.image && <img src={game.image.medium_url} alt="" />}
 
-                {challenge}
+               
 
             </div>
         )

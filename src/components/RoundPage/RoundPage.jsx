@@ -15,7 +15,7 @@ class RoundPage extends Component {
         
         setTimeout(() => {
             this.props.history.push('/resultspage')
-            }, 5000)
+            }, 3000)
     }
 
     handleChange = (event) =>{
@@ -36,7 +36,7 @@ class RoundPage extends Component {
         return(
             <div>
                 <div>
-                <h1>Who's Playing</h1>
+                <h1>Player 1:</h1>
              {this.props.reduxStore.friends.map((friend, i)=>{
                  return  <select key={i} onChange={this.handleChange}>
                  <option value="--">--</option> 
@@ -49,10 +49,10 @@ class RoundPage extends Component {
                  <option value={true}>Winner</option>
                  <option value={false}>Loser</option>
              </select>
-             <button onClick={this.handleClick}>Submit</button>
+             <Button color="secondary" onClick={this.handleClick}>Submit</Button>
              </div>
              <div>
-                <h1>Who's Playing</h1>
+                <h1>Player 2:</h1>
              {this.props.reduxStore.friends.map((friend, i)=>{
                  return  <select onChange={this.handleChange}>
                  <option value="--">--</option> 
@@ -65,42 +65,9 @@ class RoundPage extends Component {
                  <option value={true}>Winner</option>
                  <option value={false}>Loser</option>
              </select>
-             <button onClick={this.handleClick}>Submit</button>
+             <Button color="secondary" onClick={this.handleClick}>Submit</Button>
              </div>
-             <div>
-                <h1>Who's Playing</h1>
-             {this.props.reduxStore.friends.map((friend, i)=>{
-                 return  <select onChange={this.handleChange}>
-                 
-                 <option value="--">--</option> 
-                 <option value={friend.id}>{this.props.reduxStore.user.username}</option>
-                 <option value={friend.user2_id} key={i}>{friend.user2}</option> 
-                 </select>
-             })}
-             <select onChange={this.handleStatChange}> 
-             <option value="--">--</option> 
-                 <option value={true}>Winner</option>
-                 <option value={false}>Loser</option>
-             </select>
-             <button onClick={this.handleClick}>Submit</button>
-             </div>
-             <div>
-                <h1>Who's Playing</h1>
-             {this.props.reduxStore.friends.map((friend, i)=>{
-                 return  <select onChange={this.handleChange}>
-                 <option value="--">--</option> 
-                 <option value={friend.id}>{this.props.reduxStore.user.username}</option>
-                 <option value={friend.user2_id} key={i}>{friend.user2}</option> 
-                 </select>
-             })}
-             <select onChange={this.handleStatChange}> 
-             <option value="--">--</option> 
-                 <option value={true}>Winner</option>
-                 <option value={false}>Loser</option>
-             </select>
-             <button onClick={this.handleClick}>Submit</button>
-             </div>
-             <Button onClick={this.handleNext}>Next</Button>
+             <Button color="secondary" onClick={this.handleNext}>Next</Button>
 
              </div>
         )

@@ -14,7 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-
+import swal from 'sweetalert'
 
 
 
@@ -76,6 +76,7 @@ class UserPage extends Component {
 
   handleDeleteClick = (game) => {
     this.props.dispatch({ type: 'DELETE_FAVORITE', payload: game.guid })
+    swal(`Good Job`, `${game.name} has been deleted`, 'success' )
   }
 
   handleGameClick = (guid) => {
@@ -132,18 +133,19 @@ class UserPage extends Component {
         })}
         <h2>Favorite List</h2>
         {this.props.reduxStore.favorite.map(game => {
-          return <div key={game.id}><Card className={classes.card} onClick={() => this.handleGameClick(game.guid)}>
+          return <div key={game.id}><Card className={classes.card} >
             <CardActionArea>
-              <CardMedia className={classes.media} image={game.image.medium_url} title="game image" />
+              <CardMedia onClick={() => this.handleGameClick(game.guid)} className={classes.media} image={game.image.medium_url} title="game image" />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2" >{game.name}</Typography  >
                 <Typography component="p" >{game.deck}</Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
+            <IconButton onClick={() => this.handleDeleteClick(game)} ><DeleteIcon className={classes.icon} /></IconButton>
             </CardActions>
           </Card>
-            <IconButton onClick={() => this.handleDeleteClick(game)} ><DeleteIcon className={classes.icon} /></IconButton>
+            
           </div>
         })}
       </div>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-
+import swal from 'sweetalert'
 class UserSearch extends Component {
     state = {
         user: ''
@@ -19,7 +19,7 @@ class UserSearch extends Component {
 
     addFriend = (user) =>{
     this.props.dispatch({type: 'ADD_FRIEND' , payload: {userID: this.props.reduxStore.user.id , friendID:user.id}} )
-    alert(`${user.username} has been added` )
+    swal(`Good Job`, `${user.username} has been added`, 'success' )
     }
     render(){
         let usernames = this.props.reduxStore.userSearch

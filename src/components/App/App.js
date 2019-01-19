@@ -5,7 +5,7 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
+import {createMuiTheme , MuiThemeProvider} from '@material-ui/core/styles'
 import {connect} from 'react-redux';
 
 import Nav from '../Nav/Nav';
@@ -24,6 +24,17 @@ import GameArchive from '../GameArchive/GameArchive';
 import UserSearch from '../UserSearch/UserSearch'
 import RoundPage from '../RoundPage/RoundPage'
 import ResultsPage from '../ResultsPage/ResultsPage'
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#0f131f',
+    },
+    secondary: {
+      main: '#ef6c34',
+    },
+  },
+})
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
@@ -33,7 +44,8 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <MuiThemeProvider theme={theme}>
+        <div className="appContainer">
           <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -91,6 +103,7 @@ class App extends Component {
           </Switch>
           <Footer />
         </div>
+        </MuiThemeProvider>
       </Router>
   )}
 }
