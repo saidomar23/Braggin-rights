@@ -5,7 +5,7 @@ import {withStyles} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 const styles = theme => ({
 button:{
-  color: '#ef6c34'
+ float:'right'
 }
 })
 
@@ -15,7 +15,7 @@ class LogOutButton extends Component{
   render(){
     const { classes } = this.props;
     return(
-  <Button varaint=""    // This Button shows up in multiple locations and is styled differently
+  <Button color='secondary' variant='outlined'   // This Button shows up in multiple locations and is styled differently
     // because it's styled differently depending on where it is used, the className
     // is passed to it from it's parents through React props
     className={classes.button}

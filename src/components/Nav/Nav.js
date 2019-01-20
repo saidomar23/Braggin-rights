@@ -84,6 +84,9 @@ const styles = theme => ({
   },
   arrowButton: {
     width: 200
+  },
+  button: {
+    width: 200
   }
 });
 
@@ -144,15 +147,18 @@ class Nav extends Component {
           }}
         >
           <div className={classes.drawerHeader}>
-            <Button color="secondary" className={classes.arrowButton} onClick={this.handleDrawerClose}>
+            <Button variant="outlined" color="secondary" className={classes.arrowButton} onClick={this.handleDrawerClose}>
                 <ChevronRightIcon />
             </Button>
           </div>
           <Divider />
           <List color="primary">  
           <center>
+            <ListItem>
+            <h2 className="nav-title">Welcome, {this.props.reduxStore.user.username}</h2>
+            </ListItem>
           <ListItem >
-            <Button color="secondary" component={Link} to="/home">
+            <Button className={classes.button} variant="text"  color="secondary" component={Link} to="/home" onClick={this.handleDrawerClose} >
                 {/* Show this link if they are logged in or not,
                 but call this link 'Home' if they are logged in,
                 and call this link 'Login / Register' if they are not */}
@@ -160,17 +166,17 @@ class Nav extends Component {
               </Button>
             </ListItem>
             <ListItem onClick={this.handleDrawerClose}>
-            <Button color="secondary" component={Link} to="/gamearchive">
+            <Button  className={classes.button} variant="text" color="secondary" component={Link} to="/gamearchive" onClick={this.handleDrawerClose}>
                 Game Archive
           </Button>
             </ListItem>
             <ListItem >
-            <Button color="secondary" component={Link} to="/gamesearch">
+            <Button className={classes.button} variant="text" color="secondary" component={Link} to="/gamesearch" onClick={this.handleDrawerClose} >
                 Game Search
           </Button>
             </ListItem>
             <ListItem >
-            <Button color="secondary" component={Link} to="/usersearch">
+            <Button className={classes.button} variant="text" color="secondary" component={Link} to="/usersearch" onClick={this.handleDrawerClose} >
                 Braggart Search
           </Button>
             </ListItem>

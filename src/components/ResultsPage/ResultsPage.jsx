@@ -59,14 +59,14 @@ class ResultsPage extends Component{
              "bottom": 80,
              "left": 50
          }}
-         colors={['blue','red']}
+         colors={['#0f131f','#ef6c34']}
          colorBy="id"
          borderWidth={1}
          borderColor="inherit:darker(0.2)"
          enableRadialLabels={false}
          radialLabelsSkipAngle={10}
          radialLabelsTextXOffset={6}
-         radialLabelsTextColor="#333333"
+         radialLabelsTextColor="#f8f8f8"
          radialLabelsLinkOffset={0}
          radialLabelsLinkDiagonalLength={16}
          radialLabelsLinkHorizontalLength={24}
@@ -74,7 +74,7 @@ class ResultsPage extends Component{
          radialLabelsLinkColor="inherit"
          sliceLabel="id"
          slicesLabelsSkipAngle={10}
-         slicesLabelsTextColor="#333333"
+         slicesLabelsTextColor="#f8f8f8"
          animate={true}
          motionStiffness={90}
          motionDamping={15}
@@ -94,7 +94,7 @@ class ResultsPage extends Component{
                     {
                         "on": "hover",
                         "style": {
-                            "itemTextColor": "#000"
+                            "itemTextColor": "#f8f8f8"
                         }
                     }
                 ]
