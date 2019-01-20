@@ -19,6 +19,7 @@ import ListItem from '@material-ui/core/ListItem';
 
 const drawerWidth = 240;
 
+
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -49,9 +50,11 @@ const styles = theme => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    background: 'primary'
   },
   drawerPaper: {
     width: drawerWidth,
+    background: 'primary'
   },
   drawerHeader: {
     display: 'flex',
@@ -79,6 +82,9 @@ const styles = theme => ({
   grow: {
     flexGrow: 1,
   },
+  arrowButton: {
+    width: 200
+  }
 });
 
 class Nav extends Component {
@@ -110,17 +116,18 @@ class Nav extends Component {
               aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, open && classes.hide)}>
-              <MenuIcon onClick={this.handleClick} />
+              <MenuIcon color="secondary" onClick={this.handleClick} />
             </IconButton>
-            <Button className={classes.menuButton} >
-              <Link to="/home">
+            <Button component={Link} to="/home" className={classes.menuButton} >
                 <h2 className="nav-title">Bragging Rights</h2>
-              </Link>
             </Button>
             <div className={classes.menuButton}>
               {this.props.reduxStore.user.id && (
                 <>
+                
+                
                   <LogOutButton className={classes.menuButton} />
+                  
                 </>
               )}
               {/* Always show this link since the about page is not protected */}
@@ -128,8 +135,6 @@ class Nav extends Component {
           </Toolbar>
         </AppBar>
         <Drawer
-        color="primary"
-        background-color="primary"
           className={classes.drawer}
           variant="persistent"
           anchor="left"
@@ -139,35 +144,37 @@ class Nav extends Component {
           }}
         >
           <div className={classes.drawerHeader}>
-            <Button onClick={this.handleDrawerClose}>
+            <Button color="secondary" className={classes.arrowButton} onClick={this.handleDrawerClose}>
                 <ChevronRightIcon />
             </Button>
           </div>
           <Divider />
-          <List color="primary">
+          <List color="primary">  
+          <center>
           <ListItem >
-              <Link to="/home">
+            <Button color="secondary" component={Link} to="/home">
                 {/* Show this link if they are logged in or not,
                 but call this link 'Home' if they are logged in,
                 and call this link 'Login / Register' if they are not */}
                 {this.props.reduxStore.user.id ? 'Home' : 'Home'}
-              </Link>
+              </Button>
             </ListItem>
             <ListItem onClick={this.handleDrawerClose}>
-              <Link to="/gamearchive">
+            <Button color="secondary" component={Link} to="/gamearchive">
                 Game Archive
-          </Link>
+          </Button>
             </ListItem>
             <ListItem >
-              <Link to="/gamesearch">
+            <Button color="secondary" component={Link} to="/gamesearch">
                 Game Search
-          </Link>
+          </Button>
             </ListItem>
             <ListItem >
-              <Link to="/usersearch">
+            <Button color="secondary" component={Link} to="/usersearch">
                 Braggart Search
-          </Link>
+          </Button>
             </ListItem>
+            </center>
           </List>
           <Divider />
         </Drawer>

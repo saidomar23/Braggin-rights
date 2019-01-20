@@ -20,7 +20,10 @@ import swal from 'sweetalert'
 
 const styles = theme => ({
   card: {
+    backgroundColor: 'secondary',
     width: 345,
+    height : 400,
+    margin : 5
   },
   media: {
     height: 140,

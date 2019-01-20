@@ -34,6 +34,13 @@ const theme = createMuiTheme({
       main: '#ef6c34',
     },
   },
+  overrides: {
+    MuiDrawer: {
+      paper: {
+        background: '#0f131f',
+      },
+    },
+  },
 })
 class App extends Component {
   componentDidMount () {
