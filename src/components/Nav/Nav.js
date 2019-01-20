@@ -6,78 +6,171 @@ import './Nav.css';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import classNames from 'classnames';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ListItem from '@material-ui/core/ListItem';
 
 
-const styles = {
+const drawerWidth = 240;
+
+const styles = theme => ({
   root: {
+    display: 'flex',
     flexGrow: 1,
     margin: 110
+  },
+  appBar: {
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginLeft: 12,
+    marginRight: 20,
+  },
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing.unit * 3,
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: -drawerWidth,
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: 0,
   },
   grow: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginLeft: 20,
-    marginRight: -12,
-  },
-};
+});
+
 class Nav extends Component {
 
+  state = {
+    open: false,
+  };
 
-  
+  handleDrawerOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleDrawerClose = () => {
+    this.setState({ open: false });
+  };
+
   render() {
-    
-
     const { classes } = this.props;
+    const { open } = this.state;;
     return (
       <div className={classes.root}>
-      <AppBar color="primary" position="fixed">
-      <Toolbar>
-      <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-        <Button className={classes.menuButton} >
-        <Link to="/home">
-          <h2 className="nav-title">Bragging Rights</h2>
-        </Link>
-        </Button>
-        <div className={classes.menuButton}>
-          {this.props.reduxStore.user.id && (
-            <>
-              <Button className={classes.menuButton}>     
-              <Link  to="/home">
+        <AppBar color="primary" position="fixed"
+          className={classNames(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}>
+          <Toolbar disableGutters={!open}>
+            <IconButton 
+              color="inherit"
+              aria-label="Open drawer"
+              onClick={this.handleDrawerOpen}
+              className={classNames(classes.menuButton, open && classes.hide)}>
+              <MenuIcon onClick={this.handleClick} />
+            </IconButton>
+            <Button className={classes.menuButton} >
+              <Link to="/home">
+                <h2 className="nav-title">Bragging Rights</h2>
+              </Link>
+            </Button>
+            <div className={classes.menuButton}>
+              {this.props.reduxStore.user.id && (
+                <>
+                  <LogOutButton className={classes.menuButton} />
+                </>
+              )}
+              {/* Always show this link since the about page is not protected */}
+            </div>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+        color="primary"
+        background-color="primary"
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <Button onClick={this.handleDrawerClose}>
+                <ChevronRightIcon />
+            </Button>
+          </div>
+          <Divider />
+          <List color="primary">
+          <ListItem >
+              <Link to="/home">
                 {/* Show this link if they are logged in or not,
                 but call this link 'Home' if they are logged in,
                 and call this link 'Login / Register' if they are not */}
-                {this.props.reduxStore.user.id ? 'Home'  : 'Home'}
+                {this.props.reduxStore.user.id ? 'Home' : 'Home'}
               </Link>
-              </Button>   
-              <Button className={classes.menuButton} >   
+            </ListItem>
+            <ListItem onClick={this.handleDrawerClose}>
               <Link to="/gamearchive">
                 Game Archive
           </Link>
-          </Button>
-          <Button className={classes.menuButton} >
-              <Link  to="/gamesearch">
+            </ListItem>
+            <ListItem >
+              <Link to="/gamesearch">
                 Game Search
           </Link>
-          </Button>
-          <Button className={classes.menuButton} >
-              <Link  to="/usersearch">
-                User Search
+            </ListItem>
+            <ListItem >
+              <Link to="/usersearch">
+                Braggart Search
           </Link>
-          </Button>
-          <LogOutButton className={classes.menuButton} />
-            </>
-          )}
-          {/* Always show this link since the about page is not protected */}
-        </div>
-        </Toolbar>
-        </AppBar>
+            </ListItem>
+          </List>
+          <Divider />
+        </Drawer>
       </div>
     )
   }
