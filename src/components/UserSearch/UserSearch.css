@@ -1,3 +1,16 @@
 .usersearch{
     width: 200px
 }
+
+
+.searchresult{
+    display: inline;
+    margin: 5px;
+    margin-top: 10px
+}
+
+.addButton{
+    display: inline;
+    margin: 5px;
+    margin-top: 10px;
+}

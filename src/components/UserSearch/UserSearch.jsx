@@ -33,9 +33,9 @@ class UserSearch extends Component {
                </form>
                     {usernames.map(user =>{
                         return <div key={user.id}>
-                             <h3>{user.username}</h3> 
-                             <p>{user.bio}</p>
-                             <Button color="primary" variant="outlined"  onClick={() => this.addFriend(user)}>Add</Button >
+                             <h3 className="searchresult" >{user.username}:</h3> 
+                             <p className="searchresult">{user.bio}</p>
+                             <Button size="small" color="secondary" variant="outlined" className="addButton" onClick={() => this.addFriend(user)}>Add</Button >
                              </div>
                     })}
             </div>
