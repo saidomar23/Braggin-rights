@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import Button from '@material-ui/core/Button'
 class GamePage extends Component {
 
     handleClick = () => {
@@ -37,7 +38,7 @@ class GamePage extends Component {
                 case 'Gambling':
                 case 'MOBA':
                 case 'First-Person Shooter':
-                    challenge = <button onClick={this.handleClick}>Challenge</button>
+                    challenge = <Button color="primary" variant="contained" onClick={this.handleClick}>Challenge</Button>
                     // break;
             }
         })

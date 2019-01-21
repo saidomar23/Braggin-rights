@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import swal from 'sweetalert'
+import Button from '@material-ui/core/Button'
+import './UserSearch.css'
 class UserSearch extends Component {
     state = {
         user: ''
@@ -25,15 +27,15 @@ class UserSearch extends Component {
         let usernames = this.props.reduxStore.userSearch
         return(
             <div>
-               <form>
-                   <input onChange={this.handleChange} type="text" />
-                   <input onClick={this.handleClick} type="submit"/>
+               <form className="usersearch">
+                   <input onChange={this.handleChange} type="text" placeholder="Search for Friends"/>
+                   <Button color="primary" variant="contained" type="submit" onClick={this.handleClick} >Submit</Button>
                </form>
                     {usernames.map(user =>{
                         return <div key={user.id}>
                              <h3>{user.username}</h3> 
                              <p>{user.bio}</p>
-                             <button onClick={() => this.addFriend(user)}>Add</button>
+                             <Button color="primary" variant="outlined"  onClick={() => this.addFriend(user)}>Add</Button >
                              </div>
                     })}
             </div>

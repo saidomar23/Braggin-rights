@@ -3,7 +3,19 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 
-router.post('/', (req, res) => {
+router.post('/player1', (req, res) => {
+
+   
+    const queryString = `INSERT INTO "stats" ("player_id" , "round" , "win/loss") VALUES ($1 , $2 , $3)`
+    pool.query(queryString, [req.body.player , req.body.round , req.body.stat]).then((result) => {
+        res.sendStatus(200);
+    })
+        .catch((error) => {
+            console.log(`Error on query ${error}`);
+            res.sendStatus(500);
+        })
+})
+router.post('/player2', (req, res) => {
 
    
     const queryString = `INSERT INTO "stats" ("player_id" , "round" , "win/loss") VALUES ($1 , $2 , $3)`

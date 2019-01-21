@@ -95,11 +95,11 @@ class UserPage extends Component {
         <h1 id="welcome">
         {this.props.reduxStore.user.username}!
         </h1>
-        <p>
-          Bio: {this.props.reduxStore.user.bio}
-        </p>
+        <h3>
+        {this.props.reduxStore.user.bio}
+        </h3>
         <div>
-          <Button onClick={this.handleClickOpen}>
+          <Button color="primary" variant="contained" onClick={this.handleClickOpen}>
             Edit Bio
         </Button>
           <Dialog
@@ -132,7 +132,7 @@ class UserPage extends Component {
 
         <h2>Friend List</h2>
         {this.props.reduxStore.friends.map((friend, i) => {
-          return <p key={i}>{friend.user2}</p>
+          return <h3 key={i}>{friend.user2}</h3>
         })}
         <h2>Favorite List</h2>
         {this.props.reduxStore.favorite.map(game => {

@@ -83,7 +83,8 @@ const styles = theme => ({
     flexGrow: 1,
   },
   arrowButton: {
-    width: 200
+    width: 200,
+    marginTop: 30
   },
   button: {
     width: 200
@@ -124,7 +125,7 @@ class Nav extends Component {
             <Button component={Link} to="/home" className={classes.menuButton} >
                 <h2 className="nav-title">Bragging Rights</h2>
             </Button>
-            <div className={classes.menuButton}>
+       
               {this.props.reduxStore.user.id && (
                 <>
                 
@@ -134,7 +135,7 @@ class Nav extends Component {
                 </>
               )}
               {/* Always show this link since the about page is not protected */}
-            </div>
+         
           </Toolbar>
         </AppBar>
         <Drawer

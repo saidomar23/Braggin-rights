@@ -10,6 +10,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import Button from '@material-ui/core/Button'
 import swal from 'sweetalert'
 import './GameSearch.css'
 
@@ -81,8 +82,8 @@ class GameSearch extends Component {
             <div>
             <div>
                 <form >
-                    <input onChange={this.handleChange} type="text"/>
-                    <input onClick={this.handleSubmitClick} type="submit"/>
+                    <input onChange={this.handleChange} type="text" placeholder="Search for games"/>
+                    <Button color="primary" variant="contained" type="submit" onClick={this.handleSubmitClick} >Submit</Button>
                 </form>
                 {/* <input onChange={this.handleChange} type="text" placeholder="search game" />
                 <button onClick={this.handleClick}>Submit</button> */}

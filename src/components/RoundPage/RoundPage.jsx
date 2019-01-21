@@ -1,12 +1,50 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import {withStyles} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import ListItemText from '@material-ui/core/ListItemText';
+import Select from '@material-ui/core/Select';
+
+
+const styles = theme => ({
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    formControl: {
+      margin: theme.spacing.unit,
+      minWidth: 120,
+      maxWidth: 300,
+    },
+    chips: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    chip: {
+      margin: theme.spacing.unit / 4,
+    },
+    noLabel: {
+      marginTop: theme.spacing.unit * 3,
+    },
+    submitButton: {
+    marginTop:20
+    },
+    nextButton:{
+        marginTop: 50
+    }
+  });
 
 class RoundPage extends Component {
     state = {
-        player : '',
-        stat: true
+        player1 : '',
+        stat1: '',
+        player2: '',
+        stat2: ''
     }
 
     handleNext = () =>{
@@ -18,56 +56,83 @@ class RoundPage extends Component {
             }, 3000)
     }
 
-    handleChange = (event) =>{
+    handlePlayer1Change = (event) =>{
         this.setState({
-            player : event.target.value
+            player1 : event.target.value
         })
     }
 
-    handleStatChange = (event) =>{
+    handlePlayer2Change = (event) =>{
         this.setState({
-            stat: event.target.value
+            player2 : event.target.value
         })
     }
-    handleClick = () =>{
-        this.props.dispatch({type: 'ADD_ROUND' , payload: {player: this.state.player, stat: this.state.stat , round: this.props.reduxStore.instance.id  } })
+     
+    handleStat1Change = (event) =>{
+        this.setState({
+            stat1: event.target.value
+        })
+    }
+    handleStat2Change = (event) =>{
+        this.setState({
+            stat2: event.target.value
+        })
+    }
+    handlePlayer2Click = () =>{
+        this.props.dispatch({type: 'ADD_PLAYER2' , payload: {player: this.state.player2, stat: this.state.stat2 , round: this.props.reduxStore.instance.id  } })
+    }
+    handlePlayer1Click = () =>{
+        this.props.dispatch({type: 'ADD_PLAYER1' , payload: {player: this.state.player1, stat: this.state.stat1 , round: this.props.reduxStore.instance.id  } })
     }
     render(){
+        const { classes } = this.props;
         return(
             <div>
                 <div>
                 <h1>Player 1:</h1>
-             {this.props.reduxStore.friends.map((friend, i)=>{
-                 return  <select key={i} onChange={this.handleChange}>
-                 <option value="--">--</option> 
-                 <option value={this.props.reduxStore.user.id}>{this.props.reduxStore.user.username}</option>
-                 <option value={friend.user2_id} key={i}>{friend.user2}</option> 
-                 </select>
-             })}
-             <select onChange={this.handleStatChange}> 
-             <option value="--">--</option> 
-                 <option value={true}>Winner</option>
-                 <option value={false}>Loser</option>
-             </select>
-             <Button color="secondary" onClick={this.handleClick}>Submit</Button>
+                <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="select-multiple">Name</InputLabel>
+                <Select value={this.state.player1} onChange={this.handlePlayer1Change}>
+                <MenuItem value="--">--</MenuItem>
+                <MenuItem value={this.props.reduxStore.user.id}>{this.props.reduxStore.user.username}</MenuItem>
+             {this.props.reduxStore.friends.map(friend =>{
+                 return( <MenuItem value={friend.user2_id} key={friend.user2_id}>{friend.user2}</MenuItem>) 
+                 })}
+                </Select>
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="select-multiple">Win/Loss</InputLabel> 
+             <Select value={this.state.stat1} onChange={this.handleStat1Change}>
+             <MenuItem value="--">--</MenuItem> 
+                 <MenuItem value={true}>Winner</MenuItem>
+                 <MenuItem value={false}>Loser</MenuItem>
+             </Select>
+             </FormControl>
+             <Button className={classes.submitButton} variant="outlined" color="secondary" onClick={this.handlePlayer1Click}>Submit</Button>
              </div>
              <div>
                 <h1>Player 2:</h1>
-             {this.props.reduxStore.friends.map((friend, i)=>{
-                 return  <select onChange={this.handleChange}>
-                 <option value="--">--</option> 
-                 <option value={friend.id}>{this.props.reduxStore.user.username}</option>
-                 <option value={friend.user2_id} key={i}>{friend.user2}</option> 
-                 </select>
-             })}
-             <select onChange={this.handleStatChange}> 
-             <option value="--">--</option> 
-                 <option value={true}>Winner</option>
-                 <option value={false}>Loser</option>
-             </select>
-             <Button color="secondary" onClick={this.handleClick}>Submit</Button>
+                <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="select-multiple">Name</InputLabel>
+                <Select value={this.state.player2} onChange={this.handlePlayer2Change}>
+                <MenuItem value="--">--</MenuItem>
+                <MenuItem value={this.props.reduxStore.user.id}>{this.props.reduxStore.user.username}</MenuItem>
+             {this.props.reduxStore.friends.map(friend =>{
+                 return( <MenuItem value={friend.user2_id} key={friend.user2_id}>{friend.user2}</MenuItem>) 
+                 })}
+                </Select>
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="select-multiple">Win/Loss</InputLabel> 
+             <Select value={this.state.stat2} onChange={this.handleStat2Change}>
+             <MenuItem value="--">--</MenuItem> 
+                 <MenuItem value={true}>Winner</MenuItem>
+                 <MenuItem value={false}>Loser</MenuItem>
+             </Select>
+             </FormControl>
+             <Button className={classes.submitButton} variant="outlined" color="secondary" onClick={this.handlePlayer2Click}>Submit</Button>
              </div>
-             <Button color="secondary" onClick={this.handleNext}>Next</Button>
+             <Button className={classes.nextButton} color="primary" variant="contained" onClick={this.handleNext}>Next</Button>
 
              </div>
         )
@@ -79,4 +144,4 @@ return {
 }
 }
 
-export default connect(mapStateToProps)(withRouter(RoundPage))
+export default connect(mapStateToProps)(withRouter(withStyles(styles)(RoundPage)))
