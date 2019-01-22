@@ -15,6 +15,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import swal from 'sweetalert'
+import './UserPage.css'
 
 
 
@@ -92,14 +93,15 @@ class UserPage extends Component {
     return (
       <center>
       <div>
-        <h1 id="welcome">
+        <div className="userbox">
+        <h1  className="username">
         {this.props.reduxStore.user.username}!
         </h1>
-        <h3>
+        <h3 className="username">
         {this.props.reduxStore.user.bio}
         </h3>
-        <div>
-          <Button color="primary" variant="contained" onClick={this.handleClickOpen}>
+        
+          <Button color="secondary" variant="outlined" onClick={this.handleClickOpen}>
             Edit Bio
         </Button>
           <Dialog
@@ -129,12 +131,12 @@ class UserPage extends Component {
             </DialogActions>
           </Dialog>
         </div>
-
-        <h2>Friend List</h2>
+          <div className="friendbox">
+        <h2 className="username" > Friends List:</h2>
         {this.props.reduxStore.friends.map((friend, i) => {
-          return <h3 key={i}>{friend.user2}</h3>
+          return <h3 className="username" key={i}>{friend.user2}</h3>
         })}
-        <h2>Favorite List</h2>
+        <h2 className="username" >Favorite List:</h2>
         {this.props.reduxStore.favorite.map(game => {
           return <div key={game.id}><Card className={classes.card} >
             <CardActionArea>
@@ -151,6 +153,7 @@ class UserPage extends Component {
             
           </div>
         })}
+        </div>
       </div>
       </center>
     )

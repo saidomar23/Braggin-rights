@@ -156,7 +156,7 @@ class Nav extends Component {
           <List color="primary">  
           <center>
             <ListItem>
-            <h2 className="nav-title">Welcome, {this.props.reduxStore.user.username}</h2>
+            <h2 className="nav-title">Welcome {this.props.reduxStore.user.username}</h2>
             </ListItem>
           <ListItem >
             <Button className={classes.button} variant="text"  color="secondary" component={Link} to="/home" onClick={this.handleDrawerClose} >

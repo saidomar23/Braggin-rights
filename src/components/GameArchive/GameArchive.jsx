@@ -49,7 +49,7 @@ class GameArchive extends Component {
         const { classes } = this.props;
 
         const gameList =  this.props.reduxStore.archive.map(game =>{
-            return  <div key={game.id}><Card backgroundColor="primary" className={classes.card} onClick={() =>this.handleGameClick(game.guid)}>
+            return  <div key={game.id}><Card className={classes.card} onClick={() =>this.handleGameClick(game.guid)}>
    <CardActionArea>
             <CardMedia className={classes.media} image={game.image.medium_url} title="game image"/>
             <CardContent>

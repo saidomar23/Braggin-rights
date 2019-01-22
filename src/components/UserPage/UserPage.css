@@ -1,0 +1,15 @@
+.userbox {
+    background-color: #0f131f;
+    width: 200px;
+    height: 200px;
+}
+
+.username{
+    color: #ef6c34
+}
+
+.friendbox{
+    background-color: #0f131f;
+    width: 500px;
+    height: 1000px;
+}

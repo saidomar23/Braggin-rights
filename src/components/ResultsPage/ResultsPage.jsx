@@ -102,7 +102,7 @@ class ResultsPage extends Component{
         ]}
                 />
 
-         <Button onClick={this.handleAddRound}>Add Another Round</Button>
+         <Button color="primary" variant="contained" onClick={this.handleAddRound}>Add Another Round</Button>
             </div>
         )
     }

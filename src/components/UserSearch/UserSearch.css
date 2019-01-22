@@ -6,11 +6,17 @@
 .searchresult{
     display: inline;
     margin: 5px;
-    margin-top: 10px
+    margin-top: 10px;
+    color: #ef6c34
 }
 
 .addButton{
     display: inline;
     margin: 5px;
     margin-top: 10px;
+}
+
+.searchbox{
+    background-color: #0f131f;
+    width: 400px;
 }

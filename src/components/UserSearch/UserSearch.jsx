@@ -32,7 +32,7 @@ class UserSearch extends Component {
                    <Button color="primary" variant="contained" type="submit" onClick={this.handleClick} >Submit</Button>
                </form>
                     {usernames.map(user =>{
-                        return <div key={user.id}>
+                        return <div className="searchbox" key={user.id}>
                              <h3 className="searchresult" >{user.username}:</h3> 
                              <p className="searchresult">{user.bio}</p>
                              <Button size="small" color="secondary" variant="outlined" className="addButton" onClick={() => this.addFriend(user)}>Add</Button >
